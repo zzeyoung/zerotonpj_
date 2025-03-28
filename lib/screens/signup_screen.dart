@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:zerotonpj_2/services/auth_service.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -14,30 +15,21 @@ class _SignupScreenState extends State<SignupScreen> {
   final pwController = TextEditingController();
   final nicknameController = TextEditingController();
 
+  final AuthService _authService = AuthService(); // ✅ auth 서비스 객체 생성
   String? errorMessage;
 
   Future<void> signup() async {
     try {
-      final auth = FirebaseAuth.instance;
-      final credential = await auth.createUserWithEmailAndPassword(
+      final user = await _authService.signUpWithEmail(
         email: emailController.text.trim(),
         password: pwController.text.trim(),
+        nickname: nicknameController.text.trim(),
       );
 
-      final uid = credential.user!.uid;
-
-      // Firestore에 유저 정보 저장
-      await FirebaseFirestore.instance.collection('users').doc(uid).set({
-        'email': emailController.text.trim(),
-        'nickname': nicknameController.text.trim(),
-        'totalPoints': 0,
-        'joinedChallenges': [],
-      });
-
-      print('✅ 회원가입 성공! UID: $uid');
-
-      // 성공 시 로그인 페이지로 이동하거나 홈으로 이동
-      Navigator.pop(context); // or push to main screen
+      if (user != null) {
+        print('✅ 회원가입 완료! UID: ${user.uid}');
+        Navigator.pop(context); // 또는 홈화면 이동
+      }
     } catch (e) {
       print('❌ 회원가입 실패: $e');
       setState(() {

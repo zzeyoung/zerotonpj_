@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:zerotonpj_2/screens/signup_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:zerotonpj_2/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -16,17 +18,28 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> login() async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      final auth = FirebaseAuth.instance;
+      final credential = await auth.signInWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
 
-      final token = await credential.user?.getIdToken();
-      print('✅ 로그인 성공!');
-      print('UID: ${credential.user?.uid}');
-      print('ID Token: $token');
+      final uid = credential.user!.uid;
 
-      // TODO: 토큰 저장 or 서버 전송 로직 추가
+      // ✅ Firestore에서 nickname 가져오기
+      final userDoc =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      final nickname = userDoc.data()?['nickname'] ?? '사용자';
+
+      print('✅ 로그인 성공!');
+
+      // ✅ 홈 화면으로 이동
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(nickname: nickname),
+        ),
+      );
     } catch (e) {
       print('❌ 로그인 실패: $e');
       setState(() {
