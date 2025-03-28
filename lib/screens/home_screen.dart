@@ -1,8 +1,7 @@
-// lib/screens/home_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:zerotonpj_2/screens/challenge_detail_screen.dart';
+import 'package:zerotonpj_2/screens/my_page_screen.dart'; // ✅ 마이페이지 스크린 추가
 
 class HomeScreen extends StatelessWidget {
   final String nickname;
@@ -53,6 +52,18 @@ class HomeScreen extends StatelessWidget {
                 ),
               );
             },
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.person),
+        onPressed: () {
+          // 마이페이지로 이동
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const MyPageScreen(),
+            ),
           );
         },
       ),

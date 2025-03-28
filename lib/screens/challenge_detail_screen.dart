@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:zerotonpj_2/services/challenge_service.dart';
+import 'package:zerotonpj_2/screens/upload_proof_screen.dart'; // ✅ 인증 업로드 화면 import
 
 class ChallengeDetailScreen extends StatelessWidget {
   final String challengeId;
@@ -41,6 +42,19 @@ class ChallengeDetailScreen extends StatelessWidget {
                 }
               },
               child: const Text('챌린지 참여하기'),
+            ),
+            const SizedBox(height: 20), // 버튼 간격
+            ElevatedButton(
+              onPressed: () {
+                // 인증 업로드 화면으로 이동
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => UploadProofScreen(challengeId: challengeId),
+                  ),
+                );
+              },
+              child: const Text('인증 업로드하기'),
             ),
           ],
         ),
