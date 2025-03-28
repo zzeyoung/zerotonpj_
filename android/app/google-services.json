@@ -1,0 +1,105 @@
+{
+  "project_info": {
+    "project_number": "34191239510",
+    "project_id": "weatherhero-debaf",
+    "storage_bucket": "weatherhero-debaf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34191239510:android:a29464fd41a955cb170ef7",
+        "android_client_info": {
+          "package_name": "com.example.WeatherHero"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDVHfkrv8t0psQOTidvxSBfZ9Qji8zfdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34191239510:android:efba9d0980fb0857170ef7",
+        "android_client_info": {
+          "package_name": "com.example.weatherhero"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDVHfkrv8t0psQOTidvxSBfZ9Qji8zfdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34191239510:android:4ece979821b20201170ef7",
+        "android_client_info": {
+          "package_name": "com.example.zerothonmobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDVHfkrv8t0psQOTidvxSBfZ9Qji8zfdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34191239510:android:d6830cd797bb285f170ef7",
+        "android_client_info": {
+          "package_name": "com.example.zerotonpj_2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDVHfkrv8t0psQOTidvxSBfZ9Qji8zfdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34191239510:android:2b16f20e2a0c52d4170ef7",
+        "android_client_info": {
+          "package_name": "com.example.zerotonproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDVHfkrv8t0psQOTidvxSBfZ9Qji8zfdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
