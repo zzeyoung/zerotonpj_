@@ -15,8 +15,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String? weatherDescription; // 날씨 설명 (예: Clear, Rain)
-  double? temperature; // 온도
+  String? weatherDescription;
+  double? temperature;
   List<DocumentSnapshot> filteredChallenges = [];
 
   @override
@@ -25,35 +25,54 @@ class _HomeScreenState extends State<HomeScreen> {
     fetchWeatherAndChallenges();
   }
 
+  // 🔸 날씨 main 값을 weatherTag로 변환하는 매핑 함수
+  String mapWeatherToTag(String weatherMain) {
+    switch (weatherMain.toLowerCase()) {
+      case 'clear':
+        return 'sunny';
+      case 'rain':
+        return 'rainy';
+      case 'clouds':
+        return 'cloudy';
+      case 'snow':
+        return 'snowy';
+      case 'thunderstorm':
+        return 'stormy';
+      default:
+        return 'unknown';
+    }
+  }
+
   Future<void> fetchWeatherAndChallenges() async {
     try {
       // 🔹 1. 날씨 API 호출
       final response = await http.get(
-        Uri.parse('http://10.0.2.2:3000/weather'), // ✅ 실제 서버 주소로 바꿔줘!
+        Uri.parse('http://10.0.2.2:3000/weather'), // 로컬 API 주소
       );
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        final description = data['weather'][0]['main']; // 예: Clear, Rain
-        final temp = data['main']['temp']; // 온도 (C)
+        final description = data['weather'][0]['main']; // ex: Clear, Rain
+        final temp = data['main']['temp'];
+
+        final weatherTag = mapWeatherToTag(description);
 
         setState(() {
           weatherDescription = description;
           temperature = temp;
         });
 
-        // 🔹 2. 해당 날씨에 맞는 챌린지 필터링
+        // 🔹 2. 날씨 태그에 맞는 챌린지 가져오기
         final querySnapshot = await FirebaseFirestore.instance
             .collection('challenges')
-            .where('weatherTag',
-                isEqualTo: description.toLowerCase()) // 예: "clear"
+            .where('weatherTag', isEqualTo: weatherTag)
             .get();
 
         setState(() {
           filteredChallenges = querySnapshot.docs;
         });
       } else {
-        print("날씨 API 호출 실패");
+        print("날씨 API 호출 실패: ${response.statusCode}");
       }
     } catch (e) {
       print("날씨 가져오기 실패: $e");
