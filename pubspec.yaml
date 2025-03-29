@@ -43,6 +43,7 @@ dependencies:
   firebase_storage: ^12.4.4
   image_picker: ^1.1.2
   geolocator: ^13.0.2
+  firebase_messaging: ^15.2.4
 
 dev_dependencies:
   flutter_test:
@@ -71,7 +72,30 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
-
+  assets:
+    - assets/images/participate_button.png
+    - assets/images/upload_proof_button.png
+    - assets/images/plogging.png
+    - assets/images/sun_dry.png
+    - assets/images/walk_bike.png
+    - assets/images/read_book.png
+    - assets/images/rain_water.png
+    - assets/images/cook_food.png
+    - assets/images/reusable_container.png
+    - assets/images/unplug.png
+    - assets/images/youtube_video.png
+    - assets/images/donate_clothes.png
+    - assets/images/warm_clothes.png
+    - assets/images/gloves.png
+    - assets/earth.png
+    - assets/profile.png
+    - assets/sunny_bg.jpg
+    - assets/rainy_bg.jpg
+    - assets/cloudy_bg.jpg
+    - assets/snowy_bg.jpg
+    - assets/images/ad3.png
+    - assets/images/ad1.png
+    - assets/images/ad2.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
@@ -83,7 +107,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  
+  fonts:
+    - family: NanumPenScript
+      fonts:
+        - asset: assets/fonts/NanumPenScript.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
