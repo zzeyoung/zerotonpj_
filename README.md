@@ -1,16 +1,81 @@
-# zerotonpj_2
+# 🌱 Weather-based Sustainability Challenge App
 
-A new Flutter project.
+> 날씨에 따라 환경 보호 활동(챌린지)을 추천하고, 인증을 통해 포인트를 적립하는 지속 가능한 생활 실천 앱입니다.
 
-## Getting Started
+## 📱 프로젝트 소개
 
-This project is a starting point for a Flutter application.
+이 앱은 사용자의 지역 날씨 데이터를 바탕으로 실천 가능한 환경 챌린지를 추천하고, 인증을 통해 포인트를 적립할 수 있도록 설계되었습니다. 사용자는 챌린지를 선택해 참여하고, 사진 인증을 통해 보상을 받으며 지속가능한 습관을 만들어갑니다.
 
-A few resources to get you started if this is your first Flutter project:
+## 🛠️ 기술 스택
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 🔹 Frontend
+- **Flutter**  
+  크로스 플랫폼 앱 개발 (iOS / Android)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 🔹 Backend
+- **Node.js + Express.js**  
+  RESTful API 서버 구축
+
+- **Firebase Firestore**  
+  NoSQL 실시간 데이터베이스
+
+- **Firebase Authentication**  
+  이메일/비밀번호 기반 사용자 인증
+
+- **Firebase Admin SDK**  
+  DB 보안 관리 및 서버 측 제어
+
+- **OpenWeatherMap API**  
+  실시간 날씨 정보 수집
+
+## 🔑 주요 기능
+
+### ✅ 회원가입 / 로그인
+- Firebase Authentication을 사용하여 이메일/비밀번호 기반 로그인 기능 구현
+- 로그인한 사용자만 챌린지 참여 및 인증 가능
+- 사용자 정보는 `users` 컬렉션에 저장되며 포인트, 참여 내역, 인증 이력을 포함
+
+### 🌤️ 날씨 기반 챌린지 추천
+- 사용자의 현재 위치 날씨를 기반으로 실천 가능한 챌린지를 추천
+- 예시:
+  - 맑은 날 → 빨래를 햇볕에 말리기
+  - 비 오는 날 → 빗물로 식물에 물주기
+- OpenWeatherMap API를 사용해 날씨 데이터를 불러오고, 해당 날씨에 맞는 `weatherTag`로 필터링
+
+### 🏁 챌린지 참여
+- 사용자가 원하는 챌린지를 선택해 참여 가능
+- 참여 제한 없음 (하루에 여러 챌린지도 참여 가능)
+- 참여 정보는 `users.joinedChallenges` 필드에 저장
+
+### 📸 인증 (Proof)
+- 챌린지를 수행한 뒤 인증 사진과 설명 업로드 가능
+- 인증 정보는 `proofs` 컬렉션에 저장
+- 같은 챌린지에 대한 중복 인증은 불가능하도록 설정
+- 인증 제출만으로 자동으로 포인트가 적립됨 (기본 상태값: 승인)
+
+### ⭐ 포인트 시스템
+- 인증 시, 해당 챌린지의 포인트만큼 사용자의 `totalPoints`가 즉시 증가
+- 마이페이지에서 누적 포인트 확인 가능
+
+### 🧑‍💻 마이페이지
+- 총 포인트
+- 참여한 챌린지 목록
+- 챌린지별 인증 내역
+
+## 📁 Firebase Firestore 구조 (요약)
+
+
+
+## 🧑‍🤝‍🧑 팀 구성
+
+- 👩‍💻 염서윤 (Backend & Flutter)
+- 👨‍💻 박채영 (Backend & Flutter)
+- 🧠 주동광 (기획)
+- 🎨 조혜진 (디자인)
+- 📋 김재민 (기획)
+
+## 🚀 향후 개선 사항
+- 관리자 인증 승인/반려 기능 도입
+- 사용자 간 랭킹 및 경쟁 요소 추가
+- 챌린지 상세 페이지에서 댓글 기능 구현
+- Firebase Cloud Messaging을 통한 푸시 알림 (예정)
